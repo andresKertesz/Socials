@@ -1,0 +1,32 @@
+﻿@using Socials.Client.Client.Controllers;
+
+@inject UserController userController
+
+@if (!userController.LoggedIn)
+{
+        <RadzenProfileMenu Style="background-color: whitesmoke">
+            <Template>
+                <RadzenGravatar Email="user@example.com">
+                </RadzenGravatar>
+            </Template>
+            <ChildContent>
+                <RadzenProfileMenuItem Text="Perfil" Path="perfil" Icon="account_circle"></RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Text="Notificaciones" Path="notifications" Icon="notifications"></RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Style="color: red" Text="Cerrar sesión" Path="logout" Icon="logout"></RadzenProfileMenuItem>
+            </ChildContent>
+        </RadzenProfileMenu>
+    
+
+}
+else
+{
+    <a href="/login">Iniciar sesión</a>
+
+}
+
+@code {
+    void LogOut()
+    {
+        userController.LogOut();
+    }
+}

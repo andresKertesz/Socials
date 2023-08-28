@@ -1,0 +1,76 @@
+﻿@page "/login"
+
+@using Radzen.Blazor
+@using Socials.Client.Client.Controllers;
+
+@inject ComponentController componentController
+@inject UserController userController
+@inject NavigationManager navManager
+
+<div class="login-container">
+    <RadzenStack style="justify-content:center;align-items: center" Orientation="Orientation.Vertical">
+        <RadzenCard Variant="Variant.Filled" Style="max-width:400px;margin:auto" Class="rz-my-12 rz-mx-auto">
+            <RadzenStack Orientation="Orientation.Horizontal">
+                <RadzenImage Style="width:25%;height: 70%;border-radius: 50%" Path="logo.png"></RadzenImage>
+                <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
+                    <RadzenHeading Class="title" Text="Login" Style="font-style: normal"></RadzenHeading>
+                </RadzenStack>
+            </RadzenStack>
+            <RadzenStack Orientation="Orientation.Vertical">
+                <RadzenFormField Text="Usuario" Variant="Variant.Outlined">
+                    <RadzenTextBox @bind-Value="@userValue"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Contraseña" Variant="Variant.Outlined">
+                    <RadzenPassword @bind-Value="@passwordValue"></RadzenPassword>
+                </RadzenFormField>
+                <RadzenButton Text="Iniciar sesión" class="btn-primary" Click="LoginUser"></RadzenButton>
+                <RadzenButton Text="Registrarse" class="btn-secondary" ></RadzenButton>
+
+            </RadzenStack>
+        </RadzenCard>
+    </RadzenStack>
+</div>
+
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+        background-color: #f5f5f5;
+    }
+
+    .title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    .google-button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (userController.LoggedIn)
+        {
+            navManager.NavigateTo("/");
+        }
+    }
+
+    // Implement the OnGoogleSignIn and Login methods here
+    private string userValue { get; set; }
+    private string passwordValue { get; set; }
+
+    void LoginUser()
+    {
+
+        userController.LogIn(userValue, passwordValue);
+        navManager.NavigateTo("/");
+    }
+}
+
+

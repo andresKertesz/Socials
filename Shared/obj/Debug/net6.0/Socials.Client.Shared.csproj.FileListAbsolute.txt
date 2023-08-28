@@ -1,0 +1,12 @@
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\bin\Debug\net6.0\Socials.Client.Shared.deps.json
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\bin\Debug\net6.0\Socials.Client.Shared.dll
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\bin\Debug\net6.0\Socials.Client.Shared.pdb
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Socials.Client.Shared.csproj.AssemblyReference.cache
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Socials.Client.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Socials.Client.Shared.AssemblyInfoInputs.cache
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Socials.Client.Shared.AssemblyInfo.cs
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Socials.Client.Shared.csproj.CoreCompileInputs.cache
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Socials.Client.Shared.dll
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\refint\Socials.Client.Shared.dll
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Socials.Client.Shared.pdb
+C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\ref\Socials.Client.Shared.dll

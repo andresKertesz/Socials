@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Socials.Client.Client.props" />
+</Project>
