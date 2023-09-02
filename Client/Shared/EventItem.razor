@@ -1,0 +1,67 @@
+﻿@using Client.Model
+@using System.Globalization
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<div class="event-card">
+    <div class="event-header">
+        @Event.Nombre
+    </div>
+    <div class="event-body">
+        <div class="d-flex justify-content-between mb-2">
+            <span>@Event.FechaEvento.ToString("dddd, dd MMMM")</span>
+            <span>@(Event.Habilitado ? "Habilitado" : "Deshabilitado")</span>
+        </div>
+        <p class="event-details limitWidth flex-fill">@Event.Descripcion</p>
+        <div class="d-flex justify-content-between">
+            <span>Buenos Aires</span>
+            <span><strong>@Event.Asistentes</strong> Asistentes</span>
+        </div>
+    </div>
+    <div class="event-footer">
+        <div class="d-flex justify-content-between">
+            <span><i class="oi oi-heart"></i> @Event.Like</span>
+            <span><i class="fas fa-map-marker-alt"></i> @Event.Latitud, @Event.Longitud</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    .event-card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .limitWidth{
+        width: 2vw;
+        overflow-wrap: break-word;
+    }
+
+    .event-header {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .event-body {
+        margin-bottom: 10px;
+    }
+
+    .event-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .event-footer {
+        border-top: 1px solid #ccc;
+        margin-top: 10px;
+        padding-top: 5px;
+    }
+</style>
+
+@code {
+    [Parameter] public Event Event { get; set; }
+}

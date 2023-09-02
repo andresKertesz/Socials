@@ -1,32 +1,41 @@
 ﻿@using Socials.Client.Client.Controllers;
 
-@inject UserController userController
-
-@if (!userController.LoggedIn)
-{
-        <RadzenProfileMenu Style="background-color: whitesmoke">
-            <Template>
-                <RadzenGravatar Email="user@example.com">
-                </RadzenGravatar>
-            </Template>
-            <ChildContent>
-                <RadzenProfileMenuItem Text="Perfil" Path="perfil" Icon="account_circle"></RadzenProfileMenuItem>
-                <RadzenProfileMenuItem Text="Notificaciones" Path="notifications" Icon="notifications"></RadzenProfileMenuItem>
-                <RadzenProfileMenuItem Style="color: red" Text="Cerrar sesión" Path="logout" Icon="logout"></RadzenProfileMenuItem>
-            </ChildContent>
-        </RadzenProfileMenu>
-    
-
+<div style="background-color:transparent">
+@if (userController.LoggedIn)
+{   <div style="padding: 25px;padding-top: 10%;display: flex; align-items: center; justify-content: center; height: 100vh; vertical-align: middle">
+         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" style="display: inline-block;">
+                <RadzenText >@userController.LoggedInUser?.NickName</RadzenText>
+            <RadzenProfileMenu Style="background-color: transparent">
+                <Template>
+                    <RadzenGravatar Email="andreskertesz@gmail.com" >
+                    </RadzenGravatar>
+                </Template>
+                <ChildContent>
+                    <RadzenProfileMenuItem Text="Perfil" Path="perfil" Icon="account_circle"></RadzenProfileMenuItem>
+                    <RadzenProfileMenuItem Text="Notificaciones" Path="notifications" Icon="notifications"></RadzenProfileMenuItem>
+                    <RadzenProfileMenuItem Style="color: red" Text="Cerrar sesión" Path="logout" Icon="logout"></RadzenProfileMenuItem>
+                </ChildContent>
+            </RadzenProfileMenu>
+        </RadzenStack>
+    </div>
 }
 else
 {
     <a href="/login">Iniciar sesión</a>
 
 }
-
+</div>
 @code {
+    [Parameter]
+    public AuthenticationController userController { get; set; }
+
     void LogOut()
     {
         userController.LogOut();
+    }
+
+    void RefreshMe()
+    {
+        this.StateHasChanged();
     }
 }

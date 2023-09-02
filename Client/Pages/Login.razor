@@ -4,8 +4,10 @@
 @using Socials.Client.Client.Controllers;
 
 @inject ComponentController componentController
-@inject UserController userController
 @inject NavigationManager navManager
+@inject AuthenticationController userController
+@inject ILocalStorageService localstorage;
+
 
 <div class="login-container">
     <RadzenStack style="justify-content:center;align-items: center" Orientation="Orientation.Vertical">
@@ -55,6 +57,7 @@
 @code {
     protected override void OnInitialized()
     {
+        componentController.SetCurrentPageTitle("Login");
         if (userController.LoggedIn)
         {
             navManager.NavigateTo("/");
@@ -64,11 +67,11 @@
     // Implement the OnGoogleSignIn and Login methods here
     private string userValue { get; set; }
     private string passwordValue { get; set; }
-
     void LoginUser()
     {
 
         userController.LogIn(userValue, passwordValue);
+        localstorage.SetItemAsStringAsync("loggedInUser", userValue);
         navManager.NavigateTo("/");
     }
 }

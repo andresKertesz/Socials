@@ -1,0 +1,12 @@
+﻿@page "/logout"
+@using Socials.Client.Client.Controllers
+@inject AuthenticationController userController
+@inject NavigationManager navManager
+
+@code {
+    protected override void OnInitialized()
+    {
+        userController.LogOut();
+        navManager.NavigateTo("/");
+    }
+}
