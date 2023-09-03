@@ -31,9 +31,15 @@
             </RadzenStack>
         </RadzenCard>
     </RadzenStack>
+    @if (IsLoading)
+    {
+       <LoadingSpinner />
+    }
 </div>
 
 <style>
+    /* Add this CSS code to your Blazor component's .css file or a global stylesheet */
+
     .login-container {
         display: flex;
         justify-content: center;
@@ -55,6 +61,9 @@
 </style>
 
 @code {
+
+    private bool IsLoading { get; set; }
+
     protected override void OnInitialized()
     {
         componentController.SetCurrentPageTitle("Login");
@@ -67,12 +76,25 @@
     // Implement the OnGoogleSignIn and Login methods here
     private string userValue { get; set; }
     private string passwordValue { get; set; }
-    void LoginUser()
+    async void LoginUser()
     {
+        IsLoading = true;
 
-        userController.LogIn(userValue, passwordValue);
-        localstorage.SetItemAsStringAsync("loggedInUser", userValue);
-        navManager.NavigateTo("/");
+        var result = await userController.LogInAsync(userValue, passwordValue);
+        await localstorage.SetItemAsStringAsync("loggedInUser", userValue);
+        IsLoading = false;
+        switch (result)
+        {
+            case AuthenticationController.LogInResult.Success:
+                navManager.NavigateTo("/");
+                break;
+            case AuthenticationController.LogInResult.IncorrectCredentials:
+                Console.WriteLine("MAL!");
+                break;
+            case AuthenticationController.LogInResult.ServerNotFound:
+                Console.WriteLine("Servidor incorrecto!");
+                break;
+        }
     }
 }
 

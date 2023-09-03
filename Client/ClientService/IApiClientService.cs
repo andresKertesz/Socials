@@ -4,6 +4,8 @@
     {
         Task<HttpResponseMessage> GetAsync(string endpoint);
         Task<HttpResponseMessage> PostAsync(string endpoint, HttpContent content);
+        void SetBearerToken(string token);
+
 
 
     }

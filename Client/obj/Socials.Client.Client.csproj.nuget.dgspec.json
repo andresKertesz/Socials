@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Client\\Socials.Client.Client.csproj": {}
+    "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Client\\Socials.Client.Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Client\\Socials.Client.Client.csproj": {
+    "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Client\\Socials.Client.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Client\\Socials.Client.Client.csproj",
+        "projectUniqueName": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Client\\Socials.Client.Client.csproj",
         "projectName": "Socials.Client.Client",
-        "projectPath": "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Client\\Socials.Client.Client.csproj",
-        "packagesPath": "C:\\Users\\Elan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Client\\obj\\",
+        "projectPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Client\\Socials.Client.Client.csproj",
+        "packagesPath": "C:\\Users\\akertesz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Elan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\akertesz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Shared\\Socials.Client.Shared.csproj": {
-                "projectPath": "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Shared\\Socials.Client.Shared.csproj"
+              "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj": {
+                "projectPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj"
               }
             }
           }
@@ -76,14 +76,15 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[6.0.4, 6.0.4]"
+              "version": "[6.0.11, 6.0.11]"
             }
           ],
           "frameworkReferences": {
@@ -91,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -100,17 +101,17 @@
         }
       }
     },
-    "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Shared\\Socials.Client.Shared.csproj": {
+    "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Shared\\Socials.Client.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj",
         "projectName": "Socials.Client.Shared",
-        "projectPath": "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Shared\\Socials.Client.Shared.csproj",
-        "packagesPath": "C:\\Users\\Elan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Elan\\Documents\\Socials\\Socials.Client\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj",
+        "packagesPath": "C:\\Users\\akertesz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Elan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\akertesz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -141,7 +142,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -150,7 +152,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -4,11 +4,13 @@
 @if (userController.LoggedIn)
 {   <div style="padding: 25px;padding-top: 10%;display: flex; align-items: center; justify-content: center; height: 100vh; vertical-align: middle">
          <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" style="display: inline-block;">
-                <RadzenText >@userController.LoggedInUser?.NickName</RadzenText>
             <RadzenProfileMenu Style="background-color: transparent">
                 <Template>
                     <RadzenGravatar Email="andreskertesz@gmail.com" >
                     </RadzenGravatar>
+                    <RadzenImage Path="logo.png"></RadzenImage>
+                    <RadzenText>@userController.LoggedInUser?.NickName</RadzenText>
+
                 </Template>
                 <ChildContent>
                     <RadzenProfileMenuItem Text="Perfil" Path="perfil" Icon="account_circle"></RadzenProfileMenuItem>

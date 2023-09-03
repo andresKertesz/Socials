@@ -5,7 +5,7 @@
       "url": "css\/app.css"
     },
     {
-      "hash": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
+      "hash": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7\/p4nS6D\/0=",
       "url": "css\/bootstrap\/bootstrap.min.css"
     },
     {
@@ -79,6 +79,14 @@
     {
       "hash": "sha256-qvbGicv1IGdK1D3w\/HURbwh2QcBzz71A4FBkmLJdHc8=",
       "url": "Socials.Client.Client.styles.css"
+    },
+    {
+      "hash": "sha256-G6z4g\/PAyLLqM98bAvNhCSsJYBXHtlXEcUW\/Svp+FPg=",
+      "url": "appsettings.json"
+    },
+    {
+      "hash": "sha256-w2vMoqbIgF9UyzKqfDFXjqgg7IsGRHDvzb6DcyaPW6s=",
+      "url": "_framework\/Blazored.LocalStorage.dll"
     },
     {
       "hash": "sha256-mcU\/plYwkXGljmgcZ9yC4ScqAK54kc7p172El2ZjjrA=",
@@ -865,8 +873,8 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-WYno\/cK5MDsl5yi4T\/\/QgUskbBfhLL77i+c0uKzO9+c=",
-      "url": "_framework\/dotnet.6.0.4.b3iqzibjt4.js"
+      "hash": "sha256-HhmIRaEAYx3PfR62C4YNREPYVe4xFHj\/j4uQfwWX\/2M=",
+      "url": "_framework\/dotnet.6.0.11.lb1r8lu1mm.js"
     },
     {
       "hash": "sha256-Lv3h5dH3BV8JIZagipVCG0N\/oBjQF6jXUUWR6shkvws=",
@@ -901,11 +909,11 @@
       "url": "_framework\/Socials.Client.Shared.pdb"
     },
     {
-      "hash": "sha256-3wJyEYwJZP7W6f\/nNaZZ+qLIsJmTE7R6YxzSdPE+KZM=",
+      "hash": "sha256-0YKF2dZLroXN29rNcSyfRl4jS+FqsuxnSGI61oepzcQ=",
       "url": "_framework\/Socials.Client.Client.dll"
     },
     {
-      "hash": "sha256-\/eCsoGP2Ggj\/RRwhvUskJwcVECVzL\/z6iz2DrOyVV1M=",
+      "hash": "sha256-mPjIKR5z48wxcJRSRiWJJIZ0QUI+YlJCjs\/P5aJz39g=",
       "url": "_framework\/Socials.Client.Client.pdb"
     },
     {
@@ -913,12 +921,8 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-w7+WNupWE4TnMGW0znGGAWvD3r7IYoqn5BRv19i1J6Y=",
+      "hash": "sha256-p91235SYDLDuFDR1sHroRwfxVoZ+4bNMulwpAJsI3ns=",
       "url": "_framework\/blazor.boot.json"
-    },
-    {
-      "hash": "sha256-w2vMoqbIgF9UyzKqfDFXjqgg7IsGRHDvzb6DcyaPW6s=",
-      "url": "_framework\/Blazored.LocalStorage.dll"
     },
     {
       "hash": "sha256-pD2j0NpfAvP6lCBXMLOMfFAju7kEWE7pDK6\/8Px49MY=",
@@ -1053,5 +1057,5 @@
       "url": "_content\/Radzen.Blazor\/Radzen.Blazor.js"
     }
   ],
-  "version": "UhbcaqRi"
+  "version": "4bnZz3ts"
 };

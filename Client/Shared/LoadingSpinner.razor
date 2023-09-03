@@ -1,0 +1,31 @@
+﻿<div class="loading-spinner">
+    <!-- You can replace this with your preferred loading spinner implementation -->
+    <div class="spinner-border text-primary" role="status">
+    </div>
+</div>
+
+<style>
+
+    .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Background overlay with transparency */
+    z-index: 9999; /* Ensure the spinner is on top of other content */
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #007bff; /* Change the spinner color as needed */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+</style>
