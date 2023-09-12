@@ -2,21 +2,20 @@
 {
     public class User
     {
-        public Guid Id { get; set; }
-        public string NickName { get; set; }
-        public DateTime BirthDay { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string Username { get; set; }
         public string Email { get; set; }
-        public string ImageName { get; set; }
-
-        public User(string nick)
-        {
-            Id = Guid.NewGuid();
-            NickName = nick;
-            BirthDay = DateTime.Now;
-            Email= string.Empty;
-            ImageName = "icon-192.png";
-        }
-
-
+        public DateTime? EmailVerifiedAt { get; set; }
+        public string? GoogleId { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public string Photo { get; set; }
+        public int? Age { get; set; }
+        public int VerifiedId { get; set; }
+        public int Hidden { get; set; }
+        public DateTime? Birthdate { get; set; }
+        public bool? Verified { get; set; }
     }
 }

@@ -3,6 +3,7 @@
 @using Radzen.Blazor
 @using Socials.Client.Client.Controllers;
 
+@inject NotificationService notificationService
 @inject ComponentController componentController
 @inject NavigationManager navManager
 @inject AuthenticationController userController
@@ -61,7 +62,6 @@
 </style>
 
 @code {
-
     private bool IsLoading { get; set; }
 
     protected override void OnInitialized()
@@ -71,6 +71,16 @@
         {
             navManager.NavigateTo("/");
         }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        if (userController.UserTokenExists)
+        {
+
+        }
+
     }
 
     // Implement the OnGoogleSignIn and Login methods here
@@ -83,16 +93,17 @@
         var result = await userController.LogInAsync(userValue, passwordValue);
         await localstorage.SetItemAsStringAsync("loggedInUser", userValue);
         IsLoading = false;
+        StateHasChanged();
         switch (result)
         {
             case AuthenticationController.LogInResult.Success:
                 navManager.NavigateTo("/");
                 break;
             case AuthenticationController.LogInResult.IncorrectCredentials:
-                Console.WriteLine("MAL!");
+                notificationService.Notify(NotificationSeverity.Error,"Credenciales incorrectas","Usuario o contraseña incorrectas.",3000);
                 break;
             case AuthenticationController.LogInResult.ServerNotFound:
-                Console.WriteLine("Servidor incorrecto!");
+                notificationService.Notify(NotificationSeverity.Error, "No se puede conectar con el servidor.", "Por favor, intentelo de nuevo más tarde.", 3000);
                 break;
         }
     }

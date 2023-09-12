@@ -1,22 +1,20 @@
 ﻿@using Socials.Client.Client.Controllers;
 
-<div style="background-color:transparent">
+<div class="row" style="background-color:transparent">
 @if (userController.LoggedIn)
-{   <div style="padding: 25px;padding-top: 10%;display: flex; align-items: center; justify-content: center; height: 100vh; vertical-align: middle">
-         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" style="display: inline-block;">
-            <RadzenProfileMenu Style="background-color: transparent">
-                <Template>
-                    <RadzenGravatar Email="andreskertesz@gmail.com" >
-                    </RadzenGravatar>
-                    <RadzenImage Path="logo.png"></RadzenImage>
-                    <RadzenText>@userController.LoggedInUser?.NickName</RadzenText>
-
-                </Template>
+{   <div style="display: flex; justify-content: center; height: 100vh; vertical-align: middle">
+         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Style="display: inline-block;">
+            <RadzenProfileMenu Style="background-color: red">
                 <ChildContent>
                     <RadzenProfileMenuItem Text="Perfil" Path="perfil" Icon="account_circle"></RadzenProfileMenuItem>
                     <RadzenProfileMenuItem Text="Notificaciones" Path="notifications" Icon="notifications"></RadzenProfileMenuItem>
                     <RadzenProfileMenuItem Style="color: red" Text="Cerrar sesión" Path="logout" Icon="logout"></RadzenProfileMenuItem>
                 </ChildContent>
+
+                <Template>
+                    <RadzenLabel Text="@userController.LoggedInUser.Username" />
+                    <RadzenImage Path="logo.png" Style="border-radius: 16px; height: 32px; width: 32px"></RadzenImage>
+                </Template>
             </RadzenProfileMenu>
         </RadzenStack>
     </div>

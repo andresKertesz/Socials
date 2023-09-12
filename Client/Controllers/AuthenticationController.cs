@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Socials.Client.Client.ClientService;
@@ -13,19 +14,25 @@ namespace Socials.Client.Client.Controllers
     public class AuthenticationController
 
     {
+
+        public event Action UserLoggedOutOrIn; 
         private const string BASE_USER_URL = "user/";
-        public enum LogInResult { Success, ServerNotFound, IncorrectCredentials }
+        public enum LogInResult { Success, ServerNotFound, IncorrectCredentials,UnknownError}
+        public enum LogoutResult { Success, ServerNotFound}
         public bool LoggedIn { get; private set; }
 
         public User? LoggedInUser { get; private set; }
+        public bool UserTokenExists => GetUserToken() != null;
         private readonly IApiClientService ApiClient;
+        private readonly IJSRuntime _jsRuntime;
         private string? _userBearerToken { get; set; }
         private readonly ILocalStorageService _localStorageService;
-        public AuthenticationController(IApiClientService apiClient, ILocalStorageService localStorageService)
+        public AuthenticationController(IApiClientService apiClient, ILocalStorageService localStorageService, IJSRuntime jsRuntime)
         {
             LoggedIn = false;
             LoggedInUser = null;
             ApiClient = apiClient;
+            _jsRuntime = jsRuntime;
             this._localStorageService = localStorageService;
         }
 
@@ -42,7 +49,7 @@ namespace Socials.Client.Client.Controllers
         }
 
 
-        private async Task<string?> GetUserToken()
+        public async Task<string?> GetUserToken()
         {
 
             bool contains = await _localStorageService.ContainKeyAsync("token");
@@ -55,8 +62,13 @@ namespace Socials.Client.Client.Controllers
             return token;
 
         }
-
-        public async Task<User> GetUserData(string token)
+        public async Task ReconnectUser(string token)
+        {
+            var user = await GetUserData(token);
+            LoggedIn = true;
+            LoggedInUser = user;
+        }
+        public async Task<User?> GetUserData(string token)
         {
 
             ApiClient.SetBearerToken(token);
@@ -65,8 +77,18 @@ namespace Socials.Client.Client.Controllers
             if (content.IsSuccessStatusCode)
             {
                 string rawJson = await content.Content.ReadAsStringAsync();
-                JObject jsonObject = JObject.Parse(rawJson);
-                return new("user");
+                var json = JObject.Parse(rawJson);
+                if (!json.ContainsKey("data"))
+                {
+                    return null;
+                }
+                var data = json["data"]?.ToString() ;
+                if(data == null)
+                {
+                    return null;
+                }
+                User? user = JsonConvert.DeserializeObject<User>(data);
+                return user;
             }
             else
             {
@@ -94,10 +116,26 @@ namespace Socials.Client.Client.Controllers
                     if (response.ContainsKey("token"))
                     {
                         _userBearerToken = response["token"]?.ToObject<string>();
+                        if(_userBearerToken == null)
+                        {
+                            return LogInResult.UnknownError;
+                        }
+                        LoggedInUser = await GetUserData(_userBearerToken);
+                        if(LoggedInUser != null)
+                        {
+                            LoggedIn = true;
+                            await _localStorageService.SetItemAsStringAsync("token", _userBearerToken);
+                        }
+                        UserHasLoggedOutOrIn();
                         return LogInResult.Success;
                     }
                     return LogInResult.IncorrectCredentials;
                 }
+            }
+            else
+            {
+                string message = await login.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
             }
             
             return LogInResult.ServerNotFound;
@@ -105,10 +143,20 @@ namespace Socials.Client.Client.Controllers
             
         }
 
-        public void LogOut()
+        public async Task<LogoutResult> LogOut()
         {
-            // Logic to set LoggedIn to false
+            var logout = await ApiClient.PostAsync(BASE_USER_URL + "logout",null);
+            if(!logout.IsSuccessStatusCode)
+            {
+                return LogoutResult.ServerNotFound;    
+            }
+            await _localStorageService.RemoveItemAsync("token");
+            _userBearerToken = null;
             LoggedIn = false;
+            UserHasLoggedOutOrIn();
+            return LogoutResult.Success;
         }
+
+        private void UserHasLoggedOutOrIn() => UserLoggedOutOrIn?.Invoke();
     }
 }

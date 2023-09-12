@@ -1,77 +1,98 @@
 ﻿@using Socials.Client.Client.Controllers;
-@inherits LayoutComponentBase
 @inject ComponentController componentController
-@inject AuthenticationController userController
-<div class="page">
-
-    @if (componentController.ShowNavBar)
-    {
-        <div class="sidebar sidebarColor">
-            <NavMenu mainLayout="this"/>
-        </div>
-    }
-    else
-    {
-        <div class="toggledSidebar sidebarColor">
-            <ToggledNavMenu mainLayout="this" />
-        </div>
-    }
-
-
-    <main style="background-color: #f5f5f5;">
-        <div class="top-row px-4 menuColor">
-            <div class="col-11">
-
-                <RadzenHeading Style="margin-top: 10px; color: antiquewhite" Text="@componentController.CurrentPageTitle"></RadzenHeading>
-
-            </div>
-            <div class="col-1">
-
-                <LogInButton UserController="@userController"></LogInButton>
-            
-            </div>
-        </div>
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+@inject AuthenticationController authController
+@inject NavigationManager navManager
+@inherits LayoutComponentBase
 
 <RadzenDialog />
 <RadzenNotification />
 <RadzenContextMenu />
 <RadzenTooltip />
 
-<style>
-    .menuColor{
-        background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 10%, rgba(0,212,255,1) 100%);
-    }
-</style>
+<RadzenLayout style="height: auto">
+    <RadzenHeader class="row">
+        <RadzenStack  Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
+            <RadzenSidebarToggle Click="@(() => sidebar1Expanded = !sidebar1Expanded)" />
+            <RadzenLabel Text="Socials" class="app-title" Style="align-content: center" />
+            <div style="width:100%;">
+            </div>
+            @if (authController.LoggedIn)
+            {
+                 <RadzenProfileMenu Style="width: 300px; justify-content:right">
+                    <Template>
+                        <RadzenLabel Text="@authController.LoggedInUser.Username" Style="column-gap:2px"></RadzenLabel>
+                        <RadzenImage Path="logo.png" Style="border-radius: 16px; height: 32px; width: 32px"/>
+                    </Template>
+                    <ChildContent>
+                        <RadzenProfileMenuItem Text="Perfil" Path="@ProfilePath" Value="perfil" Icon="person"/>
+                        <RadzenProfileMenuItem Text="Cerrar sesión" Path="logout" Value="logout" Icon="power_settings_new" />
+                    </ChildContent>
+                </RadzenProfileMenu>
+            }
+            else
+            {
+                <RadzenButton Shade="Shade.Default" Click="SendToLogin" Text="Login" ButtonStyle="ButtonStyle.Light" Style="width: 300px ; margin:5px"/>
+            }
+        </RadzenStack>
+    </RadzenHeader>
+    <RadzenSidebar @bind-Expanded="@sidebar1Expanded">
+        <RadzenPanelMenu>
+            <RadzenPanelMenuItem Text="Eventos" Path="/" Icon="event" />
+            <RadzenPanelMenuItem Text="Categorias" Path="categorias" Icon="list" />
+        </RadzenPanelMenu>
+    </RadzenSidebar>
+    <RadzenBody>
+        <div class="container-fluid "style="height:100vh;">
+            @Body
+        </div>
+    </RadzenBody>   
+</RadzenLayout>
 
-@code{
+@code {
+    bool sidebar1Expanded = true;
+
+    private string ProfilePath => GetProfilePath();
+
+    string GetProfilePath()
+    {
+        string profile = "perfil/";
+        if(authController.LoggedInUser != null)
+        {
+            return profile+authController.LoggedInUser.Username;
+        }
+        return profile;
+    }
     protected override void OnInitialized()
     {
         componentController.OnTitleChanged += StateHasChanged;
+        authController.UserLoggedOutOrIn += StateHasChanged;
+
         base.OnInitialized();
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        string? token = await authController.GetUserToken();
+        if(token != null)
+        {
+            await authController.ReconnectUser(token);
+        }
     }
     public void RefreshState()
     {
         this.StateHasChanged();
     }
 
-     public void Dispose()
+    public void Dispose()
     {
         componentController.OnTitleChanged -= StateHasChanged;
+        authController.UserLoggedOutOrIn -= StateHasChanged;
     }
 
 
-
-    protected override Task OnParametersSetAsync()
+    void SendToLogin()
     {
-
-        return base.OnParametersSetAsync();
+        navManager.NavigateTo("/login");
     }
-    private string TabTitle{ get; set; }
-
+    private string? TabTitle { get; set; }
 }

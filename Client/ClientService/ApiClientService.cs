@@ -1,4 +1,8 @@
-﻿namespace Socials.Client.Client.ClientService
+﻿using Microsoft.AspNetCore.Http;
+using System.Net.Mime;
+using System.Web.Mvc;
+
+namespace Socials.Client.Client.ClientService
 {
     public class ApiClientService : IApiClientService
     {
@@ -24,9 +28,9 @@
 
         }
 
+        [ValidateAntiForgeryToken]
         public async Task<HttpResponseMessage> PostAsync(string endpoint, HttpContent content)
         {
-
             var response = await _httpClient.PostAsync(BaseUrl + endpoint, content);
             return response;
         }

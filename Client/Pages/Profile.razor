@@ -1,0 +1,48 @@
+﻿@page "/perfil/{Username}"
+
+@inject NavigationManager navManager
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img src="@ImgPlaceholder" alt="User Avatar" class="rounded-circle mb-3" style="width:128px;height:128px;">
+                    <h4 class="card-title">@Username</h4>
+                    <p class="card-text">@</p>
+                    <p class="card-text">Web Developer | UI/UssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssX Designer</p>
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary">Follow</RadzenButton>
+                    <RadzenButton ButtonStyle="ButtonStyle.Secondary">Edit Profile</RadzenButton>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <RadzenTabs>
+                    <Tabs>
+                        
+                    </Tabs>
+                </RadzenTabs>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Username { get; set; }
+
+    private const string ImgPlaceholder = "https://logodownload.org/wp-content/uploads/2018/10/racing-logo-escudo.png";
+    private const string ImgStyle = "width:64px; height: 64px; border-radius: 24px; border: 2px double #333; box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);";
+
+    private const int ImgHeight = 64;
+    private const int ImgWidth = 64;
+    protected override void OnInitialized()
+    {
+        if(Username == null)
+        {
+            navManager.NavigateTo("/");
+        }
+
+        
+    }
+}

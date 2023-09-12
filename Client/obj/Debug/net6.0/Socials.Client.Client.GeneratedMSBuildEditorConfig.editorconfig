@@ -44,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Pages/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Shared/EventItem.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV2ZW50SXRlbS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

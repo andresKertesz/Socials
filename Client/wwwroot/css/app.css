@@ -67,3 +67,20 @@ a, .btn-link {
 .gradientBackground {
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
+
+.circular_image {
+    float: inherit;
+    margin-left: 125px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    width: 50px;
+    height: 100%;
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: blue;
+}
+
+.whole-background {
+    height:100vh; 
+    margin:0px;
+}
