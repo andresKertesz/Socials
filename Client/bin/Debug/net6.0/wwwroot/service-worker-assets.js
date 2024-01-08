@@ -957,11 +957,11 @@
       "url": "_framework\/Socials.Client.Shared.pdb"
     },
     {
-      "hash": "sha256-vaS5QTKIFRx2Z95lzCNww9PtYoLdztPXGDc7GH2Hess=",
+      "hash": "sha256-nlQqDgS8Vw4f\/FsfwwtxUf5aLmhB\/RTODXMC2jcL5wA=",
       "url": "_framework\/Socials.Client.Client.dll"
     },
     {
-      "hash": "sha256-WdlF+0B5bRKyLyYOYidZue9fU7tc7UXQhcsseX6mWHQ=",
+      "hash": "sha256-lSyLg505BANGeYmp4SgAaOpP9\/+D\/gR+6joGP+pbMD0=",
       "url": "_framework\/Socials.Client.Client.pdb"
     },
     {
@@ -969,7 +969,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-YMtZRyEFwyD7DZbx7t0CNRGeusG9UiuNYbh77vC6LvY=",
+      "hash": "sha256-GPCR0iVJgaeln2jeb5aN12zlQC4Fig5U57cTIrFFD0o=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1105,5 +1105,5 @@
       "url": "_content\/Radzen.Blazor\/Radzen.Blazor.js"
     }
   ],
-  "version": "+SeUiZhR"
+  "version": "KSfU+IWr"
 };

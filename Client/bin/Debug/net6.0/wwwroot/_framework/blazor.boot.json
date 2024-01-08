@@ -216,14 +216,14 @@
       "netstandard.dll": "sha256-eWmNGfejUeBAxr01xTdL9vgARF2KwlV2JPpYdaokts8=",
       "System.Private.CoreLib.dll": "sha256-5w4iRqv9MYyA0CG9D1wGOudtAmfU8mI10S6SKDD\/scI=",
       "Socials.Client.Shared.dll": "sha256-YXh5\/PuDHkT0k0aLR+xSja0m+hv4bBWncwxPwckSrbg=",
-      "Socials.Client.Client.dll": "sha256-nlQqDgS8Vw4f\/FsfwwtxUf5aLmhB\/RTODXMC2jcL5wA="
+      "Socials.Client.Client.dll": "sha256-ERGwmror8v0qjwVbEnPgDASdxm8QhuZpPkW3lCzMl0w="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "Socials.Client.Shared.pdb": "sha256-qyx0LZ+hJpZ9c6GPNTaIESOriRq48p0LJeQrFKSrc1E=",
-      "Socials.Client.Client.pdb": "sha256-lSyLg505BANGeYmp4SgAaOpP9\/+D\/gR+6joGP+pbMD0="
+      "Socials.Client.Client.pdb": "sha256-fhvmRC\/jrQguHh6UCaDZSy1DwsqoeUoFWZTGuYEc0HA="
     },
     "runtime": {
       "dotnet.6.0.22.irxfig55bd.js": "sha256-Vpgzm0BMIfPGXG2SCtEChw5HmXlQJIIS0eyBG8kP+u4=",
