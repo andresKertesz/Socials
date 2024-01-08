@@ -3,47 +3,91 @@
 @using Socials.Client.Client.Model
 @inject ComponentController componentController
 @inject EventController eventController
-@inject HttpClient http
+@inject AuthenticationController authController
+@inject IJSRuntime jsInterop
 
 <PageTitle>Socials</PageTitle>
+@if (Loading)
+{
+    <LoadingSpinner></LoadingSpinner>
+}
+ <div id="leafletMap" style="height:500px;width:1500px"></div>
 
-<RadzenStack Orientation="Orientation.Horizontal" Style="width=100%;" class="col-12">
-    <RadzenStack Orientation="Orientation.Vertical" class="flex inline col-6" >
-        <div style="height: 100%; overflow-y: scroll;">
+    <RadzenStack Style="height: 57px; margin-bottom: 10px; background-color: #ffffff; position: sticky; margin: 10px; padding-left: 15px; padding-top: 0px; width: 100%; border-radius: 10px; max-width: 100%" class="imgBorder col-lg-12 col-md-12" Orientation="Radzen.Orientation.Horizontal">
+        <div class="col-6" style="height: 100%; vertical-align: middle; position: static; float: none">
+            <RadzenLabel Text="Distancia:" Style="height: 100%; width: 128px; line-height: 57px; float: none; text-align: right" class="col-6" />
+        </div>
+    </RadzenStack>
+    <RadzenStack Orientation="Orientation.Horizontal" Style="position: static; text-align: left" class="col-12" JustifyContent="Radzen.JustifyContent.Center">
+        <RadzenStack Orientation="Orientation.Vertical" class="flex inline" Gap="20px" >
+            <div style="overflow-y: scroll; width: 100%; display: flex; flex-direction: column; align-items: center;">
 
-            <RadzenCard Style="margin: 10px">
-
-
-                @foreach(var e in Event)
+                @foreach (var e in Events)
                 {
                     <EventItem Event=@e />
                 }
-
-
-
-            </RadzenCard>
-        </div>
-    </RadzenStack>
-    <RadzenStack Orientation="Orientation.Vertical" class="flex inline col-6">
-
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-
+            </div>
+        </RadzenStack>
 
     </RadzenStack>
 
-</RadzenStack>
 
 @code{
-    public List<Event> Event { get; set; }
+    public List<Event> Events { get; set; } = new();
+    public bool Loading = true;
+    private double? Latitude { get; set; }
+    private double? Longitude { get; set; }
     protected override async Task OnInitializedAsync()
     {
+
+        await GetUserCoordinates();
         componentController.SetCurrentPageTitle("Eventos");
-        //var s = await http.GetStringAsync("sample-data/SampleEvents.Json");
-        Event = EventData.GetFixedEvents();
         base.OnInitialized();
     }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            
+        }
+    }
+    private async Task InitializeMap()
+    {
+        await jsInterop.InvokeVoidAsync("createMap", "leafletMap",Latitude.Value,Longitude.Value, 13);
+        foreach(var e in Events)
+        {
+            double latitude = Double.Parse(e.latitude);
+            double longitude = Double.Parse(e.longitude);
+            await jsInterop.InvokeVoidAsync("addMarker",  latitude,longitude, e.name);
+        }
+        Loading = false;
+        StateHasChanged();
+    }
+
+
+    async Task GetUserCoordinates()
+    {
+        await jsInterop.InvokeVoidAsync("getGeolocation", DotNetObjectReference.Create(this));
+
+    }
+
+    [JSInvokable]
+    public async void ReceiveGeolocation(double? latitude, double? longitude)
+    {
+        this.Latitude = latitude;
+        this.Longitude = longitude;
+        if(Latitude.HasValue && Longitude.HasValue)
+            if(authController.LoggedIn)
+                Events = await eventController.GetEventsFromDistanceAsync(10,Latitude.Value,Longitude.Value);
+            else
+            {
+                Events = await eventController.GetPublicEventsFromDistanceAsync(10, Latitude.Value, Longitude.Value);
+            }
+
+        await InitializeMap();
+    }
+
 
 
 }

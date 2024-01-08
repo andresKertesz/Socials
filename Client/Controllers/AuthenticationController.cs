@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Socials.Client.Client.ClientService;
+using Socials.Client.Client.Helpers;
 using Socials.Client.Client.Model;
 
 namespace Socials.Client.Client.Controllers 
@@ -48,7 +50,54 @@ namespace Socials.Client.Client.Controllers
 
         }
 
+        public async Task<ResponseMessage> RegisterUser(User user)
+        {
 
+            var rm = new ResponseMessage()
+            {
+                OK = false
+            };
+            Dictionary<string, string?> userData = new Dictionary<string, string?>(){
+                { "username", user.Username },
+                { "password", user.Password },
+                { "email", user.Email },
+                {"name",user.Name },
+                {"verifiedId","1" },
+                {"hidden",user.Hidden.ToString() },
+                { "birthdate",user.Birthdate.Value.ToString("yyyy-MM-dd hh:mm:ss")}
+            };
+
+            HttpContent httpContent = new FormUrlEncodedContent(userData);
+            var content = await ApiClient.PostAsync(BASE_USER_URL+"register",httpContent);
+            if (content.IsSuccessStatusCode)
+            {
+                string rawJson = await content.Content.ReadAsStringAsync();
+                var json = JObject.Parse(rawJson);
+                if (!json.ContainsKey("data"))
+                {
+                    if (json.ContainsKey("errorInfo"))
+                    {
+                        var errorMessage = json["errorInfo"]?.Value<string>();
+                        rm.Message = errorMessage;
+                    }
+
+                    return rm;
+                }
+                var data = json["data"]?.ToString();
+                if (data == null)
+                {
+                    rm.Message = "No se pudo crear la cuenta correctamente. Por favor intentarlo en otro momento.";
+                    return rm;
+                }
+                rm.OK = true;
+                rm.Message = "Usuario creado correctamente";
+                return rm;
+            }
+
+            rm.Message = "No se pudo comunicar con el servidor.";
+            return rm;
+
+        }
         public async Task<string?> GetUserToken()
         {
 
@@ -139,10 +188,27 @@ namespace Socials.Client.Client.Controllers
             }
             
             return LogInResult.ServerNotFound;
-            
-            
         }
 
+
+        public async Task<User?> GetUserDataByUsername(string username)
+        {
+            var query = HttpUtility.ParseQueryString(string.Empty);
+            query["username"] = username;
+
+            var userJson = await ApiClient.GetAsync(BASE_USER_URL +"?"+ query.ToString()); ;
+            if (userJson.IsSuccessStatusCode)
+            {
+                var content = await userJson.Content.ReadAsStringAsync();
+                User? userData = GetUserFromJson(content); 
+                return userData;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         public async Task<LogoutResult> LogOut()
         {
             var logout = await ApiClient.PostAsync(BASE_USER_URL + "logout",null);
@@ -158,5 +224,24 @@ namespace Socials.Client.Client.Controllers
         }
 
         private void UserHasLoggedOutOrIn() => UserLoggedOutOrIn?.Invoke();
+
+
+        private User? GetUserFromJson(string content)
+        {
+            string rawJson = content;
+            var json = JObject.Parse(rawJson);
+            if (!json.ContainsKey("data"))
+            {
+                return null;
+            }
+            var data = json["data"]?[0]?.ToString();
+            if (data == null)
+            {
+                return null;
+            }
+            User? user = JsonConvert.DeserializeObject<User>(data);
+            return user;
+        }
+
     }
 }

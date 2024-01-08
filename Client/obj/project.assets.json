@@ -2688,19 +2688,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\akertesz\\.nuget\\packages\\": {}
+    "C:\\Users\\Elan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Client\\Socials.Client.Client.csproj",
+      "projectUniqueName": "C:\\Users\\Elan\\Documents\\Socials\\SocialsFrontend\\SocialsFrontend\\Client\\Socials.Client.Client.csproj",
       "projectName": "Socials.Client.Client",
-      "projectPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Client\\Socials.Client.Client.csproj",
-      "packagesPath": "C:\\Users\\akertesz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Client\\obj\\",
+      "projectPath": "C:\\Users\\Elan\\Documents\\Socials\\SocialsFrontend\\SocialsFrontend\\Client\\Socials.Client.Client.csproj",
+      "packagesPath": "C:\\Users\\Elan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Elan\\Documents\\Socials\\SocialsFrontend\\SocialsFrontend\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\akertesz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Elan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2714,8 +2714,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj": {
-              "projectPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj"
+            "C:\\Users\\Elan\\Documents\\Socials\\SocialsFrontend\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj": {
+              "projectPath": "C:\\Users\\Elan\\Documents\\Socials\\SocialsFrontend\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj"
             }
           }
         }
@@ -2778,7 +2778,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[6.0.11, 6.0.11]"
+            "version": "[6.0.22, 6.0.22]"
           }
         ],
         "frameworkReferences": {
@@ -2786,7 +2786,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

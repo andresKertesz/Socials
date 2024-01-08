@@ -10,3 +10,14 @@ C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Social
 C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\refint\Socials.Client.Shared.dll
 C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\Socials.Client.Shared.pdb
 C:\Users\akertesz\OneDrive\Socials\Socials.Client\Shared\obj\Debug\net6.0\ref\Socials.Client.Shared.dll
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\bin\Debug\net6.0\Socials.Client.Shared.deps.json
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\bin\Debug\net6.0\Socials.Client.Shared.dll
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\bin\Debug\net6.0\Socials.Client.Shared.pdb
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\obj\Debug\net6.0\Socials.Client.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\obj\Debug\net6.0\Socials.Client.Shared.AssemblyInfoInputs.cache
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\obj\Debug\net6.0\Socials.Client.Shared.AssemblyInfo.cs
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\obj\Debug\net6.0\Socials.Client.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\obj\Debug\net6.0\Socials.Client.Shared.dll
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\obj\Debug\net6.0\refint\Socials.Client.Shared.dll
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\obj\Debug\net6.0\Socials.Client.Shared.pdb
+C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Shared\obj\Debug\net6.0\ref\Socials.Client.Shared.dll

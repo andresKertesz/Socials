@@ -9,73 +9,81 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = Socials.Client.Client
 build_property.RootNamespace = Socials.Client.Client
-build_property.ProjectDir = C:\Users\akertesz\Documents\Socials\SocialsFrontend\Client\
+build_property.ProjectDir = C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Client\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\akertesz\Documents\Socials\SocialsFrontend\Client
+build_property.MSBuildProjectDirectory = C:\Users\Elan\Documents\Socials\SocialsFrontend\SocialsFrontend\Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/App.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Pages/Categorias.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/Categorias.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcmlhcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Pages/Counter.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Pages/FetchData.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/EventPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXZlbnRQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Pages/Index.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Pages/Login.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Pages/Logout.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/Logout.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Pages/Profile.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/Map.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Pages/Profile.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Shared/EventItem.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Shared/EventItem.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEV2ZW50SXRlbS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Shared/LoadingSpinner.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Shared/LoadingSpinner.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvYWRpbmdTcGlubmVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Shared/LogInButton.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Shared/LogInButton.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ0luQnV0dG9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Shared/SurveyPrompt.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/_Imports.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Shared/MainLayout.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-2szbwefn7i
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Shared/NavMenu.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-56fxih8rls
 
-[C:/Users/akertesz/Documents/Socials/SocialsFrontend/Client/Shared/ToggledNavMenu.razor]
+[C:/Users/Elan/Documents/Socials/SocialsFrontend/SocialsFrontend/Client/Shared/ToggledNavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRvZ2dsZWROYXZNZW51LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-q5c5y8dj7a

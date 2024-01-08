@@ -1,0 +1,21 @@
+﻿@page "/map"
+@inject IJSRuntime JSRuntime
+
+<div id="leafletMap" style="height: 500px;"></div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await InitializeMap();
+        }
+    }
+    private async Task InitializeMap()
+    {
+        await JSRuntime.InvokeVoidAsync("createMap", "leafletMap", 51.505, -0.09, 13);
+        await JSRuntime.InvokeVoidAsync("addMarker",  51.51, -0.1, "Marker 1");
+        await JSRuntime.InvokeVoidAsync("addMarker", 51.52, -0.11, "Marker 2");
+    }
+}

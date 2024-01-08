@@ -1,6 +1,9 @@
-﻿@page "/perfil/{Username}"
+@page "/perfil/{Username}"
+@using Socials.Client.Client.Controllers
+@using Socials.Client.Client.Model
 
 @inject NavigationManager navManager
+@inject AuthenticationController authController
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -8,18 +11,36 @@
             <div class="card">
                 <div class="card-body text-center">
                     <img src="@ImgPlaceholder" alt="User Avatar" class="rounded-circle mb-3" style="width:128px;height:128px;">
-                    <h4 class="card-title">@Username</h4>
-                    <p class="card-text">@</p>
+                    <h4 class="card-title">@SelectedUser?.Username</h4>
+                    <p class="card-text">@SelectedUser?.AgeCalc años</p>
                     <p class="card-text">Web Developer | UI/UssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssX Designer</p>
-                    <RadzenButton ButtonStyle="ButtonStyle.Primary">Follow</RadzenButton>
-                    <RadzenButton ButtonStyle="ButtonStyle.Secondary">Edit Profile</RadzenButton>
+                    @if (authController.LoggedInUser != null && !authController.LoggedInUser.Username.Equals(Username))
+                    {
+                        <RadzenButton ButtonStyle="ButtonStyle.Primary">Enviar Solicitud</RadzenButton>   
+                    }
+                    @if(authController.LoggedInUser != null && authController.LoggedInUser.Username.Equals(Username))
+                    {
+                        <RadzenButton ButtonStyle="ButtonStyle.Secondary">Editar perfil</RadzenButton>
+                    }
                 </div>
             </div>
 
             <div class="card mt-4">
-                <RadzenTabs>
+                <RadzenTabs RenderMode="TabRenderMode.Client" TabPosition="Radzen.TabPosition.Top" Style="vertical-align: baseline; text-align: left">
                     <Tabs>
-                        
+                        <RadzenTabsItem Text="Eventos" Icon="event">
+                                                                           
+                                                                            <div class="container">
+                                                                                <p>gola</p>
+                                                                            </div>
+                                                
+                                                                        </RadzenTabsItem>
+                        <RadzenTabsItem Text="Comentarios" Icon="chat_bubble">
+                           <div class="container">
+                                <p>gola</p>
+                            </div>
+                        </RadzenTabsItem>
+                        <RadzenTabsItem Text="Likes" Icon="favorite"></RadzenTabsItem>
                     </Tabs>
                 </RadzenTabs>
             </div>
@@ -30,19 +51,26 @@
 @code {
     [Parameter]
     public string? Username { get; set; }
-
-    private const string ImgPlaceholder = "https://logodownload.org/wp-content/uploads/2018/10/racing-logo-escudo.png";
+    public User? SelectedUser;
+    private const string ImgPlaceholder = "https://placehold.co/64x64";
     private const string ImgStyle = "width:64px; height: 64px; border-radius: 24px; border: 2px double #333; box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);";
 
     private const int ImgHeight = 64;
     private const int ImgWidth = 64;
-    protected override void OnInitialized()
-    {
-        if(Username == null)
-        {
-            navManager.NavigateTo("/");
-        }
 
-        
+    protected override async Task OnInitializedAsync()
+    {
+        //TODO: Loading screen
+        if(Username != null)
+        {
+            var userData = await authController.GetUserDataByUsername(Username);
+            if(userData != null)
+            {
+                SelectedUser = userData;
+                return;
+            }
+        }
+        navManager.NavigateTo("/");
+        return; 
     }
 }

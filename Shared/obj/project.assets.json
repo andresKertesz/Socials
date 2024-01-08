@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\akertesz\\.nuget\\packages\\": {}
+    "C:\\Users\\Elan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\Elan\\Documents\\Socials\\SocialsFrontend\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj",
       "projectName": "Socials.Client.Shared",
-      "projectPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj",
-      "packagesPath": "C:\\Users\\akertesz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\akertesz\\Documents\\Socials\\SocialsFrontend\\Shared\\obj\\",
+      "projectPath": "C:\\Users\\Elan\\Documents\\Socials\\SocialsFrontend\\SocialsFrontend\\Shared\\Socials.Client.Shared.csproj",
+      "packagesPath": "C:\\Users\\Elan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Elan\\Documents\\Socials\\SocialsFrontend\\SocialsFrontend\\Shared\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\akertesz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Elan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

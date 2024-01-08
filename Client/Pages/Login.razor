@@ -1,7 +1,10 @@
-﻿@page "/login"
+@page "/login"
+
 
 @using Radzen.Blazor
 @using Socials.Client.Client.Controllers;
+@using System.Text.RegularExpressions
+@using Socials.Client.Client.Model
 
 @inject NotificationService notificationService
 @inject ComponentController componentController
@@ -10,31 +13,112 @@
 @inject ILocalStorageService localstorage;
 
 
-<div class="login-container">
-    <RadzenStack style="justify-content:center;align-items: center" Orientation="Orientation.Vertical">
-        <RadzenCard Variant="Variant.Filled" Style="max-width:400px;margin:auto" Class="rz-my-12 rz-mx-auto">
-            <RadzenStack Orientation="Orientation.Horizontal">
-                <RadzenImage Style="width:25%;height: 70%;border-radius: 50%" Path="logo.png"></RadzenImage>
-                <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
-                    <RadzenHeading Class="title" Text="Login" Style="font-style: normal"></RadzenHeading>
-                </RadzenStack>
-            </RadzenStack>
-            <RadzenStack Orientation="Orientation.Vertical">
-                <RadzenFormField Text="Usuario" Variant="Variant.Outlined">
-                    <RadzenTextBox @bind-Value="@userValue"></RadzenTextBox>
-                </RadzenFormField>
-                <RadzenFormField Text="Contraseña" Variant="Variant.Outlined">
-                    <RadzenPassword @bind-Value="@passwordValue"></RadzenPassword>
-                </RadzenFormField>
-                <RadzenButton Text="Iniciar sesión" class="btn-primary" Click="LoginUser"></RadzenButton>
-                <RadzenButton Text="Registrarse" class="btn-secondary" ></RadzenButton>
+<div class="login-container" >
+    <RadzenTabs Change=@OnTabChange  RenderMode = "TabRenderMode.Server" @bind-SelectedIndex="SelectedTab">
+        <Tabs>
+            <RadzenTabsItem Text="Login">
+                    <RadzenCard @onkeydown="@HandleEnterKeyDownLogin" Variant="Variant.Filled" Style="max-width: 600px; padding: 20px; height: 400px; width: 500px; margin-top: 10px; margin-bottom: 10px" Class="rz-my-12 rz-mx-auto">
+                        <RadzenStack Orientation="Orientation.Horizontal">
+                            <RadzenImage Style="width:25%;height: 70%;border-radius: 50%" Path="logo.png"></RadzenImage>
+                            <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
+                                <RadzenHeading Class="title" Text="Login" Style="font-style: normal"></RadzenHeading>
+                             </RadzenStack>
+                        </RadzenStack>
+                        <RadzenStack Orientation="Orientation.Vertical" JustifyContent="Radzen.JustifyContent.Center" Wrap="Radzen.FlexWrap.NoWrap" Reverse="false">
+                        <RadzenFormField Text="Usuario" Variant="Variant.Outlined">
+                            <RadzenTextBox @bind-Value="@userValue"></RadzenTextBox>
+                        </RadzenFormField>
+                        <RadzenFormField Text="Contraseña" Variant="Variant.Outlined">
+                            <RadzenPassword @bind-Value="@passwordValue"></RadzenPassword>
+                        </RadzenFormField>
+                        <RadzenButton Text="Iniciar sesión" class="btn-primary" Click="LoginUser" Style="max-width: 300px; width: 100%; margin-left: 80px"></RadzenButton>
+                        <RadzenButton Text="Registrarse" class="btn-secondary" Style="width: 100%; max-width: 300px; margin-left: 80px" Click="SwitchToRegisterTab" ></RadzenButton>
+                        <RadzenLink Path="login" Style="color: #0332ff; width: 100%; text-align: center">Restaurar contraseña</RadzenLink>
+                        </RadzenStack>
+                    </RadzenCard>
+            </RadzenTabsItem>
+            <RadzenTabsItem Text="Registrarse"> 
+                    <RadzenCard Variant="Variant.Filled" Style="height: 600px; margin: auto; width: 500px" Class="rz-my-12 rz-mx-auto">
+                    <RadzenStack Orientation="Orientation.Horizontal" Style="margin-bottom: 5px">
+                            <RadzenImage Style="width:25%;height: 70%;border-radius: 50%" Path="logo.png"></RadzenImage>
+                            <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
+                                <RadzenHeading Class="title" Text="Registrarse" Style="font-style: normal"></RadzenHeading>
+                             </RadzenStack>
+                        </RadzenStack>
+                    <RadzenSteps Style="height: 450px" ShowStepsButtons="true" NextText="Siguiente" PreviousText="Anterior">
+                        <Steps>
+                            <RadzenStepsItem Text="Usuario" Selected="true">
+                                <RadzenStack Style="height: 267px" Gap="1px" Orientation="Radzen.Orientation.Vertical">
+                                    
+                                    <RadzenFormField Text="Email">
+                                        <RadzenTextBox @bind-Value=@emailSelected></RadzenTextBox>
+                                    </RadzenFormField>
+                                    <RadzenText TextStyle="TextStyle.Caption" Style="color:red; margin-left:3px">@mailTextError</RadzenText>
 
-            </RadzenStack>
-        </RadzenCard>
-    </RadzenStack>
+                                    <RadzenFormField Text="Usuario">
+                                        <RadzenTextBox @bind-Value=@userNameSelected></RadzenTextBox>
+                                    </RadzenFormField>
+                                    <RadzenText TextStyle="TextStyle.Caption" Style="color:red; margin-left:3px">@userTextError</RadzenText>
+                                    <RadzenFormField Text="Contraseña">
+                                            <RadzenPassword @bind-Value=@passwordNameSelected></RadzenPassword>
+                                    </RadzenFormField>
+                                    <RadzenText TextStyle="TextStyle.Caption" Style="color:red; margin-left:3px">@passwordTextError</RadzenText>
+
+                                    <RadzenFormField Text="Confirmar contraseña">
+                                        <RadzenPassword @bind-Value=@passwordRepeatSelected></RadzenPassword>
+                                    </RadzenFormField>
+                                    <RadzenText TextStyle="TextStyle.Caption" Style="color:red; margin-left:3px">@repeatPasswordTextError</RadzenText>
+                                    
+
+                                </RadzenStack>
+                            </RadzenStepsItem>
+                            <RadzenStepsItem Text="Datos personales" Disabled="!StepOneAllOk">
+                                
+                                <RadzenStack Style="height: 267px" Gap="7px" Orientation="Radzen.Orientation.Vertical">
+                                    
+                                    <RadzenFormField Text="Fecha de nacimiento">
+                                        <RadzenDatePicker @bind-Value="@birthDate"></RadzenDatePicker>
+                                    </RadzenFormField>
+                                    <RadzenFormField Text="Nombre">
+                                        <RadzenTextBox @bind-Value=@nameSelected></RadzenTextBox>
+                                    </RadzenFormField>
+                                    <RadzenFormField Text="Apellido">
+                                    <RadzenTextBox @bind-Value=@lastNameSelected></RadzenTextBox>
+                                     </RadzenFormField>
+                                </RadzenStack>
+                            </RadzenStepsItem>
+                            <RadzenStepsItem Text="Datos extra" Disabled="!StepTwoAllOk">
+                            
+                            
+                                <RadzenStack Style="height: 267px" Gap="2px" Orientation="Radzen.Orientation.Vertical">
+                                   <RadzenFormField  Text="Breve descripcíón de su persona">
+                                       <RadzenTextArea @bind-value=@userDetailsSelected Placeholder="Opcional" Style="height:130px"></RadzenTextArea>
+                                   </RadzenFormField>
+                                  <div class="p-3">
+
+                                       <RadzenStack Orientation=Orientation.Horizontal Style="width:100%" JustifyContent="JustifyContent.Normal">
+                                            <RadzenText TextStyle="TextStyle.Subtitle2" Style="line-height:50px" TagName="TagName.H3">Subir foto de perfil...</RadzenText>
+                                            <RadzenUpload Accept="image/*" Url="upload/userImage"></RadzenUpload>
+                                       </RadzenStack>
+                                   </div>
+
+                                   <RadzenButton Disabled="@cantAdvance" Click="RegisterUser" Text="Registrarse" ButtonStyle="ButtonStyle.Primary">
+
+                                   </RadzenButton>
+                                </RadzenStack>
+                            </RadzenStepsItem>
+                        </Steps>
+                    </RadzenSteps>
+                    
+                    </RadzenCard>
+
+            </RadzenTabsItem>
+        </Tabs>
+    </RadzenTabs>
+   
     @if (IsLoading)
     {
-       <LoadingSpinner />
+        //<LoadingSpinner></LoadingSpinner>
     }
 </div>
 
@@ -62,7 +146,148 @@
 </style>
 
 @code {
+    private const string EMAIL_REGEX = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+
     private bool IsLoading { get; set; }
+    private int SelectedTab { get; set; } = 0;
+
+
+    private bool StepOneAllOk => !string.IsNullOrWhiteSpace(userNameSelected) && CheckPasswords() && CheckEmail();
+    private bool StepTwoAllOk => birthDate != null && !string.IsNullOrWhiteSpace(nameSelected) && !string.IsNullOrWhiteSpace(lastNameSelected);
+    private bool StepThreeAllOk = true;
+
+    private bool cantAdvance => !StepOneAllOk || !StepTwoAllOk || !StepThreeAllOk;
+
+    private string? userNameSelected { get; set; }
+    private string? nameSelected { get; set; }
+    private string? lastNameSelected { get; set; }
+    private string? passwordNameSelected { get; set; }
+    private string? passwordRepeatSelected { get; set; }
+    private string? emailSelected { get; set; }
+    private string? userDetailsSelected { get; set; }
+
+    private string? userTextError { get; set; }
+    private string? passwordTextError { get; set; }
+    private string? repeatPasswordTextError { get; set; }
+    private string? mailTextError { get; set; }
+
+    private Dictionary<string, string> errorWarnings = new();
+
+    private DateTime? birthDate { get; set; }
+
+    void OnTabChange(int index)
+    {
+        SelectedTab = index;
+    }
+
+    void SwitchToRegisterTab()
+    {
+        SelectedTab = 1;
+        StateHasChanged();
+    }
+
+    void SwitchToLoginTab()
+    {
+        SelectedTab = 0;
+        StateHasChanged();
+    }
+
+    private bool emailOk => CheckEmail();
+
+    async void RegisterUser()
+    {
+        IsLoading = true;
+        User newUser = new()
+            {
+                Birthdate = birthDate,
+                CreatedAt = DateTime.Now,
+                Email = emailSelected,
+                Name = nameSelected,
+                LastName = lastNameSelected,
+                Username = userNameSelected,
+                Password = passwordNameSelected,
+                Hidden = 0
+            };
+
+        var userCreation = await userController.RegisterUser(newUser);
+        IsLoading = false;
+
+        NotificationMessage nm = new NotificationMessage()
+        {
+            Duration = 4000,
+            Detail = userCreation.PrettyMessage
+        };
+        if (userCreation.OK)
+        {
+            nm.Summary = "Registro exitoso";
+            nm.Severity = NotificationSeverity.Success;
+        }
+        else
+        {
+            nm.Summary = "Error registrando usuario";
+            nm.Severity = NotificationSeverity.Error;
+        }
+
+        notificationService.Notify(nm);
+        if (userCreation.OK)
+        {
+            SwitchToLoginTab();
+        }
+    }
+
+
+
+
+    private bool CheckEmail()
+    {
+        if (string.IsNullOrWhiteSpace(emailSelected))
+        {
+            return false;
+        }
+        Match match = Regex.Match(emailSelected,EMAIL_REGEX);
+        if (!match .Success)
+        {
+
+        }
+        return match.Success;
+
+    }
+
+    private bool CheckPasswords()
+    {
+        if (string.IsNullOrWhiteSpace(passwordNameSelected))
+        {
+            passwordTextError = "Se debe ingresar una contraseña";
+            return false;
+        }
+        else
+        {
+            passwordTextError = "";
+        }
+
+        bool passCheck = passwordNameSelected.Equals(passwordRepeatSelected);
+        if (!passCheck)
+        {
+            repeatPasswordTextError = "Las contraseñas no coinciden.";
+        }
+        else
+        {
+            repeatPasswordTextError = "";
+        }
+        return passCheck;
+    }
+
+    private void ClearRegisterVariables()
+    {
+        userNameSelected = string.Empty;
+        nameSelected = string.Empty;
+        passwordNameSelected = string.Empty;
+        passwordRepeatSelected = string.Empty;
+        lastNameSelected = string.Empty;
+        emailSelected = string.Empty;
+        userDetailsSelected = string.Empty;
+        birthDate =DateTime.Now;
+    }
 
     protected override void OnInitialized()
     {
@@ -83,6 +308,8 @@
 
     }
 
+
+    #region LOGIN CODE
     // Implement the OnGoogleSignIn and Login methods here
     private string userValue { get; set; }
     private string passwordValue { get; set; }
@@ -106,6 +333,17 @@
                 notificationService.Notify(NotificationSeverity.Error, "No se puede conectar con el servidor.", "Por favor, intentelo de nuevo más tarde.", 3000);
                 break;
         }
+    }
+    #endregion
+
+    void HandleEnterKeyDownLogin(KeyboardEventArgs e)
+    {
+        if(e.Key != "Enter")
+        {
+            return;
+        }
+
+        LoginUser();
     }
 }
 

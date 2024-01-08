@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Specialized;
 using System.Net.Mime;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Socials.Client.Client.ClientService
@@ -25,6 +27,22 @@ namespace Socials.Client.Client.ClientService
         {
 
             return await _httpClient.GetAsync(BaseUrl + endpoint);
+
+        }
+        
+        public async Task<HttpResponseMessage> GetAsync(string endpoint,NameValueCollection query)
+        {
+            UriBuilder uri = new UriBuilder(BaseUrl+endpoint);
+            uri.Port = -1;
+            uri.Query = query.ToString();
+            try
+            {
+               var data =  await _httpClient.GetAsync(uri.ToString());
+            } catch (Exception e) { 
+
+                Console.WriteLine(e.ToString());
+            }
+            return await _httpClient.GetAsync(uri.ToString());
 
         }
 

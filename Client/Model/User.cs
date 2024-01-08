@@ -17,5 +17,23 @@
         public int Hidden { get; set; }
         public DateTime? Birthdate { get; set; }
         public bool? Verified { get; set; }
+
+        public string? Password { get; set; }
+
+        public int AgeCalc => CalculateAgeCorrect(Birthdate, DateTime.Now);
+        public int CalculateAgeCorrect(DateTime? birthDate, DateTime now)
+        {
+            if(birthDate == null)
+            {
+                return 0;
+            }
+            int age = now.Year - birthDate.Value.Year;
+
+            if (now.Month < birthDate.Value.Month || (now.Month == birthDate.Value.Month && now.Day < birthDate.Value.Day))
+                age--;
+
+            return age;
+        }
+
     }
 }

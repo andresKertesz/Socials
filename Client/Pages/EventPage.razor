@@ -1,0 +1,44 @@
+@page "/event/{EventId}"
+@using Socials.Client.Client.Controllers;
+@inject NavigationManager navManager
+@inject AuthenticationController authController
+
+<PageTitle>EventPage</PageTitle>
+<RadzenCard Style="width: 100%; height: 680px; max-height: 768px">
+    <RadzenStack Style="height: 50%" Gap="2px">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" Style="height: 25%; vertical-align: middle">
+            <RadzenHeading Text="Título de evento" Style="width: 65%; height: 100%; line-height: 41px"></RadzenHeading>
+            <RadzenLabel Text="UsuarioQueLoCreo" Style="width: 35%; height: 100%; display: block; font-style: normal; text-align: right; text-transform: none; line-height: 300%; vertical-align: middle" />
+        </RadzenStack>
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" Style="height: 25%; vertical-align: middle">
+    <RadzenLabel Text="Martes, 25 de Febrero" Style="width: 50%; height: 100%; margin-left: 1px" />
+<RadzenLabel Text="Categoria" Style="width: 50%; height: 100%; text-align: right" />
+        </RadzenStack>
+<RadzenText Text="Un evento es todo acontecimiento previamente organizado que reúne a un determinado número de personas en tiempo y lugar preestablecidos, que desarrollarán y compartirán una serie de actividades afines a un mismo objetivo para estímulo del comercio, la industria, el intercambio social y la cultura general." Style="height: 100%; width: content; font-size: 16px; vertical-align: baseline; background-color: rgba(255, 255, 255, 0.15)" />
+    </RadzenStack>
+    <RadzenStack Style="height: 50%">
+        <RadzenImage Style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0)" Path="icon-512.png" class="imgBorder"></RadzenImage>
+    </RadzenStack>
+</RadzenCard>
+<style>
+.imgBorder {
+  padding: 15px 15px 0;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+  -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+}
+</style>
+
+@code{
+    [Parameter]
+    public string EventId { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        if(EventId == null)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+        await base.OnInitializedAsync();
+    }
+}

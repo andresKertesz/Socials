@@ -1,4 +1,4 @@
-﻿@using Socials.Client.Client.Controllers;
+@using Socials.Client.Client.Controllers;
 @inject ComponentController componentController
 @inject AuthenticationController authController
 @inject NavigationManager navManager
@@ -11,16 +11,16 @@
 
 <RadzenLayout style="height: auto">
     <RadzenHeader class="row">
-        <RadzenStack  Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
+        <RadzenStack  Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0" Style="background-color: #5f5bf8" class="gradientBackground">
             <RadzenSidebarToggle Click="@(() => sidebar1Expanded = !sidebar1Expanded)" />
-            <RadzenLabel Text="Socials" class="app-title" Style="align-content: center" />
-            <div style="width:100%;">
+            <RadzenLabel Text="Socials" class="app-title" Style="align-content: center; width: 15%" />
+            <div style="width: 65%">
             </div>
             @if (authController.LoggedIn)
             {
-                 <RadzenProfileMenu Style="width: 300px; justify-content:right">
+                 <RadzenProfileMenu Style="width: 15% ; margin-right:0px; justify-content:right; background-color:transparent">
                     <Template>
-                        <RadzenLabel Text="@authController.LoggedInUser.Username" Style="column-gap:2px"></RadzenLabel>
+                        <RadzenLabel Text="@authController.LoggedInUser?.Username" Style="column-gap:2px"></RadzenLabel>
                         <RadzenImage Path="logo.png" Style="border-radius: 16px; height: 32px; width: 32px"/>
                     </Template>
                     <ChildContent>
@@ -31,7 +31,7 @@
             }
             else
             {
-                <RadzenButton Shade="Shade.Default" Click="SendToLogin" Text="Login" ButtonStyle="ButtonStyle.Light" Style="width: 300px ; margin:5px"/>
+                <RadzenButton Shade="Shade.Default" Click="SendToLogin" Text="Login" ButtonStyle="ButtonStyle.Light" Style="width: 166px; margin-right: 20px; min-width: 80px"/>
             }
         </RadzenStack>
     </RadzenHeader>
@@ -42,11 +42,11 @@
         </RadzenPanelMenu>
     </RadzenSidebar>
     <RadzenBody>
-        <div class="container-fluid "style="height:100vh;">
             @Body
-        </div>
-    </RadzenBody>   
+    </RadzenBody>
 </RadzenLayout>
+
+
 
 @code {
     bool sidebar1Expanded = true;

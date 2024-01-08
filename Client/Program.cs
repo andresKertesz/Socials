@@ -10,7 +10,6 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IApiClientService, ApiClientService>();
 builder.Services.AddScoped<AuthenticationController>();
@@ -33,6 +32,7 @@ builder.Services.AddScoped<ContextMenuService>();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 builder.Services.AddBlazoredLocalStorage();
+
 
 
 await builder.Build().RunAsync();

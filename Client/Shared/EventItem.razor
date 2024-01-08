@@ -1,30 +1,47 @@
-﻿@using Client.Model
+@using Client.Model
 @using System.Globalization
+@inject TooltipService tooltipService
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<RadzenCard Style="max-width: 900px; min-width: 300px; width: 100%; min-height: 260px; max-height: 260px; margin-bottom: 20px ;padding: 16px; height: 260px">
+    <div style="width: 100%; height: 200px; position: static; display: flex; visibility: visible; max-width: 100%; max-height: 80%" class="container">
+        <div style="height: 100%; text-align: left" class="col-4">
 
-<div class="event-card">
-    <div class="event-header">
-        @Event.Nombre
-    </div>
-    <div class="event-body">
-        <div class="d-flex justify-content-between mb-2">
-            <span>@Event.FechaEvento.ToString("dddd, dd MMMM")</span>
-            <span>@(Event.Habilitado ? "Habilitado" : "Deshabilitado")</span>
+            <RadzenImage Style="width: 100%; height: 100%" Path="https://placehold.co/128x128" />
+
         </div>
-        <p class="event-details limitWidth flex-fill">@Event.Descripcion</p>
-        <div class="d-flex justify-content-between">
-            <span>Buenos Aires</span>
-            <span><strong>@Event.Asistentes</strong> Asistentes</span>
-        </div>
-    </div>
-    <div class="event-footer">
-        <div class="d-flex justify-content-between">
-            <span><i class="oi oi-heart"></i> @Event.Like</span>
-            <span><i class="fas fa-map-marker-alt"></i> @Event.Latitud, @Event.Longitud</span>
+        <div style="width: 407px; word-break:break-word;   text-overflow: ellipsis;   overflow: hidden;" class="col-8">
+            <RadzenStack Style="height: 100%; padding: 0px; margin: 0px; vertical-align: baseline" Wrap="Radzen.FlexWrap.Wrap" Orientation="Radzen.Orientation.Vertical" Gap="2px">
+                <RadzenStack Style="width: 100%; height: 30px" Orientation="Radzen.Orientation.Horizontal" Reverse="false">
+                    <RadzenLink Path="@RedirectPath">
+                        <RadzenLabel Text="@Event.name" Style="width: 100%; font-weight: bold; font-size: 18px; height: 34px; max-width: 100%; min-width: 100%" />
+                    </RadzenLink>
+                </RadzenStack>
+                <RadzenLabel Text="@Event.date?.ToString("dddd, dd de MMMM")" Style="font-size: 14px; width: 100%" onclick="@OpenEvent" />
+                <RadzenLabel Text="Fiesta en Urquiza" Style="width: 100%; font-size: 14px" />
+                <RadzenText Style="width: 100%; height: 100px; font-size: 14px" TextStyle="Radzen.Blazor.TextStyle.Body1" Text="@Event.description" class="email rz-view-content">
+                    <RadzenLabel Text="Label" />
+                </RadzenText>
+            </RadzenStack>
         </div>
     </div>
-</div>
+    <RadzenStack Style="height: 45px; max-height: 20%; margin-top: 10px; float: none; border: 1px ridge #212529; border-top: 1px solid #212529; border-right: 2px none #212529; border-bottom: 2px none #212529; border-left: 2px none #212529" Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Normal" Wrap="Radzen.FlexWrap.NoWrap" class="col-12" Gap="6px">
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" Style="width: 100px; height: 45px" Wrap="Radzen.FlexWrap.NoWrap" Reverse="false" JustifyContent="Radzen.JustifyContent.Center" AlignItems="Radzen.AlignItems.Start">
+            <RadzenIcon Icon="done" Style="width: 20%; height: 43px" IconStyle="IconStyle.Dark" MouseEnter="@(args => ShowTooltip(args, "Asistentes",new TooltipOptions(){ Position = TooltipPosition.Bottom}))"></RadzenIcon>
+            <RadzenLabel Text="@Event.participants.ToString()" Style="width: 53px; display: inline; position: static; float: left; text-align: left; line-height: 40px" />
+        </RadzenStack>
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" Style="width: 100px; height: 45px">
+            <RadzenIcon Icon="favorite" Style="width: 41px; height: 43px" IconStyle="IconStyle.Danger" MouseEnter="@(args => ShowTooltip(args, "Likes",new TooltipOptions(){ Position = TooltipPosition.Bottom}))"></RadzenIcon>
+            <RadzenLabel Text="@Event.likes.ToString()" Style="width: 68px; display: inline; position: static; float: left; text-align: left; line-height: 40px" />
+        </RadzenStack>
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" Style="width: 100px; height: 45px">
+            <RadzenIcon Icon="chat_bubble" Style="width: 41px; height: 43px" IconStyle="IconStyle.Primary" MouseEnter="@(args => ShowTooltip(args,"Comentarios", new TooltipOptions(){ Position = TooltipPosition.Bottom}))"></RadzenIcon>
+            <RadzenLabel Text="0" Style="width: 68px; display: inline; position: static; float: left; text-align: left; line-height: 40px" />
+        </RadzenStack>
+    </RadzenStack>
+</RadzenCard>
+
 
 <style>
     .event-card {
@@ -35,7 +52,6 @@
     }
 
     .limitWidth{
-        width: 2vw;
         overflow-wrap: break-word;
     }
 
@@ -50,9 +66,9 @@
     }
 
     .event-details {
-        display: flex;
-        justify-content: space-between;
+        padding: 0.125rem 0.5rem;
         margin-bottom: 5px;
+        width: fit-content;
     }
 
     .event-footer {
@@ -64,4 +80,11 @@
 
 @code {
     [Parameter] public Event Event { get; set; }
+    void ShowTooltip(ElementReference elementReference, string text,TooltipOptions options = null) => tooltipService.Open(elementReference,text, options);
+
+    public string RedirectPath => "event/" + Event.id;
+    void OpenEvent()
+    {
+        
+    }
 }
